@@ -1,0 +1,21 @@
+service:
+  name: simple-serverless-offline
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: eu-west-1
+
+functions:
+  simple-serverless-offline:
+    handler: handler.serverless
+    name: "${self:service}-${self:provider.stage}"
+    description: "slspress offline example"
+    events:
+      - http:
+          path: simple-serverless-offline
+          method: get
+          cors: true
